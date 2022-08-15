@@ -22,7 +22,7 @@ if(isset($_POST['submit']))
 
     // var_dump($_SESSION);
     // exit;
-    $user = id;
+    
     $user = $_SESSION['user'];
     // $_SESSION["user"] = $row['id'];
      

@@ -27,7 +27,7 @@
       <h1>Registration</h1>
       
       <!-- i want to give colour to my error messages -->
-      <h4> <?php  error_reporting(0);  session_start(); session_destroy(); echo  $_SESSION['user']; ?>    </h4>
+      <div style='color: #000;' >  <h4> <?php  error_reporting(0);  session_start(); session_destroy(); echo  $_SESSION['user']; ?>    </h4>   </div>
      
   </center>
 
@@ -36,7 +36,7 @@
           <input type ="hidden" >
            <div class="log"> 
         
-              <label class="label_text">Name   </label>
+              <label class="label_text">Name   </label> 
               <input class= "input_deg" type="text" name="name" id="name">
             
            </div>
@@ -61,6 +61,15 @@
 
 
 
+           
+           <!-- <div class="log">
+              <label  class="label_text">Confirm password</label>
+              <input class= "input_deg" type="cpassword" name="cpassword" id="cpassword">
+           </div> -->
+
+
+
+
 
            <div class="log">
               <label  class="label_texte"> Image </label>  
@@ -74,10 +83,9 @@
            <div class="log">
            <input class="btn btn-primary" type="Submit" name="submit" value="submit" >
            </div>
+         
 
-
-
-      </form>
+           </form>
 
         
  </nav>

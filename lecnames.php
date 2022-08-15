@@ -2,16 +2,17 @@
  <?php 
 session_start();
 
-if(!isset($_SESSION['username'])) 
-{
-  header("location: login.php");
-}
+// if(!isset($_SESSION['username'])) 
+// {
+//   header("location: login.php");
+// }
 
 
 $con = mysqli_connect('localhost', 'root', '', 'school', 3307);
 
 $stmt = $con->prepare ("SELECT * FROM user where status='student'");
-   
+   //i have a problem with lecnames page, why am i not getting number one person but student names is starting from the no2
+
 $stmt->execute();
 $result = $stmt->get_result();
 $row =$result->fetch_array();

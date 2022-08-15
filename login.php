@@ -16,22 +16,22 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-<body background="lib2.jpg" class="body_deg">
+<body background="lib2.jpg" >
   <center>
       <div class="form_deg">
 
       <center class="title_deg">
       LOGIN 
     
-      <h4> <?php error_reporting(0);  session_start(); session_destroy(); echo $_SESSION['login']; ?>   </h4>
+      <div style='color:#000;' > <h4> <?php  error_reporting(0); session_start(); session_destroy(); echo $_SESSION['login']; ?>   </h4> </div>
     
       </center>
           <form action="logincheck.php" method="POST" class="login_form">
          
               <div>
              
-                  <label class="label_deg">Name</label>
-                  <input type="text" name="name" id="name" >
+                  <label class="label_deg">Email</label>
+                  <input type="text" name="email" id="email" >
                   
                   
               </div>
@@ -45,7 +45,11 @@
             
                 
                <div>
-                  <input class="btn btn-primary" type="submit" name="submit" value="login">
+                  <input class="btn btn-primary" type="submit" name="submit" value="login" >
+                  <br> 
+                       <a href= "user.php"  style='color:#000;' > Not a User? Sign up here. </a>
+   
+         
               </div>
 
           </form>

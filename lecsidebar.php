@@ -1,6 +1,6 @@
 <header class="header">
 
-      <a href="lecturer.php">Lecturer Dashboard</a>
+      <a href="">Lecturer Dashboard</a>
 
       <div class="logout">
           <a href="logout.php" class="btn btn-primary">Logout</a>
@@ -21,12 +21,12 @@
          </li>
 
          <li>
-         <a href="lecview.php">View Score</a>
+         <a href="lecview.php">Add score </a>
          </li>
 
     
          <li>
-         <a href="">Add score</a>
+         <a href="">View Score</a>
          </li>
 
     </ul>

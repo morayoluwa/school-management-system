@@ -1,6 +1,6 @@
 <header class="header">
 
-      <a href="student.php">Student Dashboard</a>
+      <a href="" >Student Dashboard</a>
 
       <div class="logout">
           <a href="logout.php" class="btn btn-primary">Logout</a>

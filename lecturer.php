@@ -1,11 +1,12 @@
 <?php
 // it solves the issue of moving to lecturer page from the url without logging in
 session_start();
+if(!isset($_SESSION['solveurlissue'])) 
+{
+  header("location: login.php");
+}
 
- if(!isset($_SESSION['username'])) 
- {
-   header("location: login.php");
- }
+
 
 ?>
 
@@ -30,6 +31,10 @@ session_start();
 
 ?>
 <div class="content">
+
+ 
+
+
 
 
 

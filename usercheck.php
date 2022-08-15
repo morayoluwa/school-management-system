@@ -1,4 +1,5 @@
 <?php 
+
 session_start();
     
 $con = mysqli_connect('localhost', 'root', '', 'school', 3307);
@@ -21,8 +22,8 @@ $con = mysqli_connect('localhost', 'root', '', 'school', 3307);
        header("location: user.php");
    }
 
-    else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) 
-
+    elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+     
    {
     
    
@@ -51,6 +52,10 @@ $con = mysqli_connect('localhost', 'root', '', 'school', 3307);
      
    }
 
+  //  elseif($password != ){
+
+  //  }
+
         else{
 
             $img_loc  = $_FILES['image']['tmp_name'];
@@ -63,12 +68,12 @@ $con = mysqli_connect('localhost', 'root', '', 'school', 3307);
      
             $img_ext = explode('.', $img_name);
             $img_ext_check = strtolower(end($img_ext));
-            $valid_img_ext = array('png', 'jpg', 'jpeg');
+            $valid_img_ext = array('png', 'jpg', 'jpeg');  //type of image to be inserted, anything else will throw type of error in line 95
      
            
               if(in_array($img_ext_check, $valid_img_ext)) {
                 if ($imgerror === 0) { 
-                    if($imgsize < 1000000) {  //for image size i.e mb size, that will be uploaded
+                    if($imgsize < 10000000000) {  //for image size i.e mb size, that will be uploaded
                          $img_namenew = uniqid('', true).".". $img_ext_check;  //to prevent overwriting of images
                          
                              $img_des = "uploadimage/" .$img_namenew;
@@ -84,7 +89,7 @@ $con = mysqli_connect('localhost', 'root', '', 'school', 3307);
                     
                     else {
                   
-              $Message = "there was an error";
+              $Message = "error don dey";
               $_SESSION['user'] =$Message;
               header("location: user.php");
 
@@ -96,21 +101,33 @@ $con = mysqli_connect('localhost', 'root', '', 'school', 3307);
               $_SESSION['user'] =$Message;
               header("location: user.php");
                 }
-        
-            
-      // insert data into database with use of prepare statement so as to protect it from injection  
-      
+
+                 $query= mysqli_query($con, "SELECT * FROM user WHERE email= '$email' ");
+                if(mysqli_num_rows($query)>0) {
+                  // if d email exists, it will throw error "email already exists";
+                  $Message = "email already exist";
+                  $_SESSION['user'] =$Message;
+                  header("location: user.php");
+                }
+                else{
+
       $stmt = $con ->prepare ( "INSERT INTO user (name, email, status, password, image) VALUES (?, ?, ?, ?, ?)" );
 
-       $passwordhash = password_hash($password, PASSWORD_BCRYPT);
+       $passwordhash = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt->bind_param("sssss", $name,  $email, $status,  $passwordhash , $img_des);
+        $stmt->bind_param("sssss", $name,  $email, $status, $passwordhash , $img_des);
         if ( $stmt->execute()) {
-            echo "<script>alert('registered successfully')</script>";
+     
             
-           
+            
+
+            $Message = "Registeration successful";
+            $_SESSION['user'] =$Message; 
+            header("location: user.php");
+            
         }
-   
+        }
+      
   
     }
 }

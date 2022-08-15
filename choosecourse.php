@@ -1,5 +1,13 @@
+<!-- in this page i want to make sure that student pick courses and register, so i will need a style that will display all courses to be picked
+by student and can also pick more than two courses at a time -->
 
+<!-- the first part is done but the 2nd problem am having here is about the storing the course in to the database -->
 
+<?php 
+
+session_start()
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,53 +34,58 @@
  <div class="content">
    <h3>Available courses</h3> 
     <br> 
-<form action="" method= "POST">
-
-
-
 
     <div  class="label_deg">
-     <select class="" >
-
-     <option value="">--select courses--</option>
+  
+    <form action="choose.php" method="POST" > 
+  
       <?php 
-       $con = mysqli_connect('localhost', 'root', '', 'school', 3307);
+      $con = mysqli_connect('localhost', 'root', '', 'school', 3307);
+       
+      
 
-       $stmt = $con->prepare ("SELECT * FROM course ");
-       $stmt->execute();
-       $result = $stmt->get_result();
-      //  $row =$result->fetch_array();
+      $choosecourse = "SELECT * FROM course";
+      //is it possible to run stmt here ?
+      
+      $query_run = mysqli_query($con,  $choosecourse);
+       
+      if(mysqli_num_rows($query_run) > 0)
 
-
-
-       while($row = mysqli_fetch_array($result))
+      {
+       foreach($query_run as $course)
        {
-             
-                 ?>
-                   <option value="<?php echo $row['course']; ?>"> </option>
-                 <?php
-             }
+         ?>
+         <input type="checkbox" name= "courses[]"  value="<?=$course['course' ]; ?>" /> <?= $course['course']; ?> <br/> 
+         <?php
+          /**the name has to be array so it will make the student to pick more than a course at a time */
+       }
+      }
+      else {
+       echo "no record";
+      }
       
-      
-
-       ?>
-
-    
-     </select>
-    </div>
-    
-
-    <div>
-                  <input class= "btn btn-tertiary " type="submit" name="submit" value="Register">
+             ?>
+       </div>
+       <div>
+                  <input class= "btn btn-success " type="submit" name="submit" value="Submit">
               </div>
-
-</form>
+              
+              </form>
+               <div style='color:#FF0000' > <h5>  <?php  error_reporting(0); session_destroy(); echo  $_SESSION['course']; ?> </h5>   </div> 
+               
       
             
 
- </div>
-  
-</body>
-</html>
+      </div>
+       
+     </body>
+     </html>
+    
+    
+   
+    
+
+       
+
 
 
